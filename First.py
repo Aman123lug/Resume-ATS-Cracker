@@ -1,5 +1,8 @@
 import streamlit as st
 import base64,PyPDF2
+from pyresparser import ResumeParser
+
+
 
 st.title('Automatic Resume Quality Checker')
 
@@ -50,13 +53,16 @@ if file:
         sa.write(file.getbuffer())
 
     pdf_viewer(save_pdf)
+    resume_data = ResumeParser(save_pdf).get_extracted_data()
     
     score = 0
-    text = data_extracttor(save_pdf)
-    st.write(text)
+    # text = data_extracttor(save_pdf)
+    st.write(resume_data)
     
-    print(text)
-    text = text.lower()
+    
+    
+    
+    
     
     
     
